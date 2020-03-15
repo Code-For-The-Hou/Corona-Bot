@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 import random
 from datetime import datetime
-from math import radians, sin, cos, asin
+from math import radians, sin, cos, asin, sqrt
 db = SQLAlchemy()
 
 class Users(db.Model):
