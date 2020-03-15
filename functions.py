@@ -5,7 +5,7 @@ from models import db, Users, Centers
 import os
 from dotenv import load_dotenv
 import re
-from math import *
+from math import radians
 
 load_dotenv(verbose=True)
 
