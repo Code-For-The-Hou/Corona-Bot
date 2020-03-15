@@ -5,7 +5,7 @@ from functions import geolocate, generate_random_string
 import csv
 
 with app.app_context():
-	with open("locations.csv","r", encoding = "utf-8") as file_to_read:
+	with open("locations.csv","r") as file_to_read:
 		csv_to_read = csv.reader(file_to_read)
 		for row in csv_to_read:
 			if row[0] != "Name":

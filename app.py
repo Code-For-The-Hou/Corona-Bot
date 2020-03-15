@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from flask import Flask, request, Response, render_template, jsonify
 from functions import generate_random_string, render, db, Users, Centers
 from datetime import datetime
