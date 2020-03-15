@@ -167,7 +167,13 @@ def return_location_message(user, text):
 	user.state += 1
 	db.session.commit()
 
-	closest_center = Centers.query.order_by(Centers.haversine(user.lat, user.lng)).first()
+	max_distance = 10000000000000
+	closest_center = None
+	for testing_center in testing_centers:
+		if testing_center.haversine(user.lat, user.lng) <= max_distance:
+			max_distance = testing_center.haversine(user.lat, user.lng)
+			closest_center = testing_center
+	
 	if closest_center == None: 
 		return translate(user, "Something went wrong. Please try again later.")
 
@@ -192,7 +198,14 @@ def return_directions_message(user, text):
 	if text not in transit_mode_dict.keys():
 		return translate(user, "I'm sorry. I did not understand your response. If you want to get there by car, text the number 1. \
 			If you want to get there by public transit, text the number 2.")
-	closest_center = Centers.query.order_by(Centers.haversine(user.lat, user.lng)).first()
+	testing_centers = Centers.query.all()
+	max_distance = 10000000000000
+	closest_center = None
+	for testing_center in testing_centers:
+		if testing_center.haversine(user.lat, user.lng) <= max_distance:
+			max_distance = testing_center.haversine(user.lat, user.lng)
+			closest_center = testing_center
+	
 	if closest_center == None: 
 		return translate(user, "Something went wrong. Please try again later.")
 
