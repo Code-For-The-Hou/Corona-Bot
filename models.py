@@ -17,7 +17,7 @@ class Users(db.Model):
 	lng = db.Column(db.Float)
 	state = db.Column(db.Integer)
 
-	def __int__(self, id, platform, contact):
+	def __init__(self, id, platform, contact):
 		self.id = id
 		self.platform = platform
 		self.contact = contact
