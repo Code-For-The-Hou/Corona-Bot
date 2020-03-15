@@ -136,7 +136,7 @@ def return_address_message(user, text):
 	user.state += 1
 	db.session.commit()
 
-	return translate(user, "Hi. This chatbot is here to help you find the nearest coronavirus testing center.\
+	return translate(user, "Hi. This chatbot is here to help you find the nearest coronavirus screening center.\
 		What is your address?")
 
 def return_zip_code_message(user, text):
@@ -179,7 +179,7 @@ def return_location_message(user, text):
 	if closest_center == None: 
 		return translate(user, "Something went wrong. Please try again later.")
 
-	return translate(user, "The nearest place for coronavirus testing is {} at {}, {}, {}, {}. Would you like directions?\
+	return translate(user, "The nearest place for coronavirus screening is {} at {}, {}, {}, {}. Would you like directions?\
 		Text the number 1 for yes. Otherwise, text the number 2 for no.".format(closest_center.name, closest_center.address, closest_center.city, closest_center.state, closest_center.zip_code))
 
 def return_mode_message(user, text):
