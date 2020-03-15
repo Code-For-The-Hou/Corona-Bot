@@ -14,6 +14,7 @@ python-dotenv = "*"
 bs4 = "*"
 flask-script = "*"
 flask-migrate = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
