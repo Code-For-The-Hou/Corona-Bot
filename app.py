@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-16 -*-
 
 from flask import Flask, request, Response, render_template, jsonify
 from functions import generate_random_string, render, db, Users, Centers
