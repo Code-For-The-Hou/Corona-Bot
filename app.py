@@ -27,7 +27,7 @@ def twilio_route():
 		db.session.add(new_user)
 		db.session.commit()
 		user = Users.query.filter_by(contact = phone_number).filter_by(platform = 'twilio').first()
-	response_message = render(user, message, db)
+	response_message = render(user, message)
 	xml = '<Response><Message>' + response_message + '</Message></Response>'
 	return Response(xml, mimetype = 'text/xml')
 
