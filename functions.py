@@ -53,7 +53,7 @@ def search_for_directions(x_coord_1, y_coord_1, x_coord_2, y_coord_2, mode):
 		else:		
 			directions.append(soup.get_text())
 	direction_text = ". ".join(directions)
-	return direction_text
+	return direction_text.replace("Restricted",". Restricted").replace("Partial",". Partial")
 
 def translate(user, text):
 	#if the user language is English speaking, simply return the text
@@ -125,18 +125,18 @@ def return_address_message(user, text):
 	}
 
 	if text not in language_bank.keys():
-		return translate(user, "Sorry. I did not understand your response. \
-			If you speak English, text the number 1. \
-			If you speak Spanish, text the number 2. \
-			If you speak Chinese, text the number 3. \
-			If you speak Vietnamese, text the number 4. \
-			If you speak French, text the number 5. \
+		return translate(user, "Sorry. I did not understand your response.\
+			If you speak English, text the number 1.\
+			If you speak Spanish, text the number 2.\
+			If you speak Chinese, text the number 3.\
+			If you speak Vietnamese, text the number 4.\
+			If you speak French, text the number 5.\
 			If you speak Arabic, text the number 6. ")
 	user.language = language_bank[text]
 	user.state += 1
 	db.session.commit()
 
-	return translate(user, "Hi. This chatbot is here to help you find the nearest coronavirus testing center. \
+	return translate(user, "Hi. This chatbot is here to help you find the nearest coronavirus testing center.\
 		What is your address?")
 
 def return_zip_code_message(user, text):
@@ -186,7 +186,7 @@ def return_mode_message(user, text):
 	if text == "1":
 		user.state += 1
 		db.session.commit()
-		return translate(user, "How would you like to get there? Text the number 1 if you want to get there by car. \
+		return translate(user, "How would you like to get there? Text the number 1 if you want to get there by car.\
 			Text the number 2 if you want to get there by public transit.")
 	elif text == "2":
 		user.state = 2
@@ -214,7 +214,7 @@ def return_directions_message(user, text):
 	directions = search_for_directions(user.lng, user.lat, closest_center.lng, closest_center.lat, transit_mode_dict[text]).replace("Destination",". Destination")
 	user.state = 2
 	db.session.commit()
-	return translate(user, "Directions to {}: {}. Thank you for using this chatbot. Please know that you should only go get tested if you are showing the symptoms of the coronavirus \
+	return translate(user, "Directions to {}: {}. Thank you for using this chatbot. Please know that you should only go get tested if you are showing the symptoms of the coronavirus.\
 		If you want to search again, please text a valid street address.".format(closest_center.name, directions))
 
 
