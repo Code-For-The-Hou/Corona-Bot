@@ -169,6 +169,7 @@ def return_location_message(user, text):
 
 	max_distance = 10000000000000
 	closest_center = None
+	testing_centers = Centers.query.all()
 	for testing_center in testing_centers:
 		if testing_center.haversine(user.lat, user.lng) <= max_distance:
 			max_distance = testing_center.haversine(user.lat, user.lng)
