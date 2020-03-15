@@ -107,12 +107,12 @@ def return_language_message(user, text):
 	user.state += 1
 	db.session.commit()
 	return translate(user, 
-		"If you speak English, text the number 1. \
-		If you speak Spanish, text the number 2. \
-		If you speak Chinese, text the number 3. \
-		If you speak Vietnamese, text the number 4. \
-		If you speak French, text the number 5. \
-		If you speak Arabic, text the number 6. ")
+		"If you speak English, text the number 1.\
+		If you speak Spanish, text the number 2.\
+		If you speak Chinese, text the number 3.\
+		If you speak Vietnamese, text the number 4.\
+		If you speak French, text the number 5.\
+		If you speak Arabic, text the number 6.")
 
 def return_address_message(user, text):
 	language_bank = {
@@ -120,8 +120,8 @@ def return_address_message(user, text):
 		'2' : 'es',
 		'3' : 'zh-CN',
 		'4' : 'vi',
-		'5' : '',
-		'6' : ''
+		'5' : 'fr',
+		'6' : 'ar'
 	}
 
 	if text not in language_bank.keys():
@@ -191,14 +191,14 @@ def return_mode_message(user, text):
 	elif text == "2":
 		user.state = 2
 		db.session.commit()
-		return translate(user, "Thank you for using this chatbot. Please know that you should only go get tested if you are showing the symptoms of the coronavirus. \
+		return translate(user, "Thank you for using this chatbot. Please know that you should only go get tested if you are showing the symptoms of the coronavirus.\
 			If you want to search again, please text a valid street address.")
 	return translate(user, "I'm sorry. I did not understand your response. If you want directions, text the number 1. Otherwise, text the number 2.")
 
 def return_directions_message(user, text):
 	transit_mode_dict = {'1':'driving','2':'transit'}
 	if text not in transit_mode_dict.keys():
-		return translate(user, "I'm sorry. I did not understand your response. If you want to get there by car, text the number 1. \
+		return translate(user, "I'm sorry. I did not understand your response. If you want to get there by car, text the number 1.\
 			If you want to get there by public transit, text the number 2.")
 	testing_centers = Centers.query.all()
 	max_distance = 10000000000000
