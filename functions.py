@@ -4,6 +4,7 @@ import random
 from models import db, Users, Centers
 import os
 from dotenv import load_dotenv
+import re
 
 load_dotenv(verbose=True)
 
