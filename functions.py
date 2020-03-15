@@ -179,8 +179,8 @@ def return_location_message(user, text):
 	if closest_center == None: 
 		return translate(user, "Something went wrong. Please try again later.")
 
-	return translate(user, "The nearest place for coronavirus testing is {} at {}, {}, {}. Would you like directions?\
-		Text the number 1 for yes. Otherwise, text the number 2 for no.")
+	return translate(user, "The nearest place for coronavirus testing is {} at {}, {}, {}, {}. Would you like directions?\
+		Text the number 1 for yes. Otherwise, text the number 2 for no.".format(closest_center.name, closest_center.address, closest_center.city, closest_center.statem closest_center.zip_code))
 
 def return_mode_message(user, text):
 	if text == "1":
