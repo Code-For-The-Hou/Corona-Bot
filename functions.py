@@ -32,6 +32,13 @@ def search_for_zip_code(text):
 		return None
 	return text
 
+def new_search_for_zip(text):
+	list_of_tokens = text.split(" ")
+	for token in list_of_tokens:
+		if token.isdigit():
+			return token
+	return False
+
 def search_for_directions(x_coord_1, y_coord_1, x_coord_2, y_coord_2, mode):
 	directions = []
 	coords_one = str(y_coord_1) + ','  + str(x_coord_1)
@@ -150,7 +157,7 @@ def return_zip_code_message(user, text):
 	return translate(user, "What is your zip code?")
 
 def return_location_message(user, text):
-	zip_code = search_for_zip_code(text)
+	zip_code = new_search_for_zip(text)
 	if zip_code == False:
 		return translate(user, "Invalid zip code. Please send a valid zip code.")
 	user.zip_code = zip_code
