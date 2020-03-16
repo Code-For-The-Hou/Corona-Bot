@@ -64,3 +64,15 @@ class Centers(db.Model):
 		c = 2 * asin(sqrt(a))
 		r = 6371 
 		return c * r
+
+	def json(self):
+		return {
+			'id' : self.id,
+			'name' : self.name,
+			'address' : self.address,
+			'city' : self.city,
+			'state' : self.state,
+			'zip_code' : self.zip_code,
+			'lat' : self.lat,
+			'lng' : self.lng
+		}

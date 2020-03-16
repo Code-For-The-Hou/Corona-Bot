@@ -33,5 +33,17 @@ def twilio_route():
 	xml = '<Response><Message>' + response_message + '</Message></Response>'
 	return Response(xml, mimetype = 'text/xml')
 
+@app.route('/api/centers', methods = ['GET'])
+def get_centers_route():
+	centers = Centers.query.all()
+	return jsonify({'data': [ center.json() for center in centers ]})
+
+@app.route('/api/centers/<center_id>', methods = ['GET'])
+def get_center_route(center_id):
+	center = Centers.query.filter_by(id = center_id).first()
+	if center == None:
+		return jsonify({'status':'error', 'message':'Coronavirus Screening Center with this ID does not exist.'})
+	return jsonify({'status':'success','data':center.json()})
+
 if __name__ == "__main__":
 	app.run(debug=True, use_reloader=True)
